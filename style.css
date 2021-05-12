@@ -170,7 +170,7 @@ nav a:hover {
     text-align: center;
   }
   .who-is h1::after {
-    content: url("assets/profile.jpg");
+    content: url("./assets/profile.jpg");
     display: block;
     height: 0;
     opacity: 0;
