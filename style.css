@@ -1,0 +1,240 @@
+:root {
+  --red: #fe8a71;
+  --yellow: #f6cd61;
+  --blue-100: #3da4ab;
+  --blue-200: #0e9aa7;
+  --gray: #4a4e4d;
+  --header: rgba(14, 154, 167, 0.9);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: --gray;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+}
+.logo {
+  position: relative;
+}
+/* .logo::after {
+  position: absolute;
+  content: ".";
+  font-weight: bold;
+  font-size: 1.8em;
+  top: -1.25rem;
+  left: 15.5rem;
+} */
+
+.content {
+  height: 100vh;
+  background-image: url(https://images.unsplash.com/photo-1529832393073-e362750f78b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80);
+  background-color: var(--gray);
+  background-blend-mode: multiply;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+}
+
+/* navigation styles start here */
+
+header {
+  background: var(--header);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+/* changed this from the tutorial video to
+   allow it to gain focus, making it tabbable */
+.nav-toggle {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+.nav-toggle:focus ~ .nav-toggle-label {
+  outline: 3px solid rgba(lightblue, 0.75);
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background: var(--blue-200);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+  white-space: nowrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1, 1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 970px) {
+  .nav-toggle-label {
+    display: none;
+  }
+  .content {
+    place-items: initial;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px auto auto;
+    position: relative;
+  }
+  .who-is {
+    grid-row: 2 / span 1;
+    background: var(--blue-100);
+    border-radius: 15px;
+    box-shadow: 10px 10px 30px;
+    position: absolute;
+    height: auto;
+    width: 33vw;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .who-is p,
+  .who-is h1 {
+    text-align: center;
+  }
+  .who-is h1::after {
+    content: url(https://lh3.googleusercontent.com/proxy/lRrs5w7MAtu_1UWe1aeCdCSa0mLo-Je39I2OopZrc4JlozcPmKx_A0DgNK2mdlBzJS9oVxX86MRZaaa2GrfVf0F-u7TL2B9WNTL4vuBN);
+    display: block;
+    height: 0;
+    opacity: 0;
+  }
+  .who-is:hover h1::after {
+    height: auto;
+    opacity: 1;
+  }
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(680px, 5fr) 1fr;
+  }
+
+  .logo {
+    grid-column: 2 / 3;
+  }
+
+  nav {
+    /* all: unset; this causes issues with Edge, since it's unsupported */
+
+    /* the following lines are not from my video, but add Edge support */
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1, 1);
+    background: none;
+    top: initial;
+    left: initial;
+    /* end Edge support stuff */
+
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav a::before {
+    content: "";
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: -0.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    transform: scale(1, 1);
+  }
+}
