@@ -28,8 +28,8 @@
       <input type="checkbox" id="nav-toggle" class="nav-toggle" />
       <nav>
         <ul>
-          <li><a href="#">Who I am</a></li>
-          <li><a href="#">What I look like</a></li>
+          <li><a href="#who-is">Who I am</a></li>
+          <li><a href="#pics">What I look like</a></li>
           <li><a href="#">Where to find me</a></li>
           <li><a href="#">What I've done</a></li>
         </ul>
@@ -40,7 +40,7 @@
     </header>
 
     <div class="content">
-      <div class="who-is">
+      <div class="who-is" id="who-is">
         <h1>Who Is...</h1>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta esse
@@ -51,11 +51,20 @@
       <div
         class="fotorama"
         data-width="400"
-        data-height="300"
+        data-ratio="16/9"
         data-allowfullscreen="true"
+        id="pics"
       >
-        <img src="https://s.fotorama.io/1.jpg" alt=".." />
-        <img src="https://s.fotorama.io/2.jpg" alt=".." />
+        <img
+          src="https://s.fotorama.io/1.jpg"
+          alt=".."
+          data-caption="A big misty forest"
+        />
+        <img
+          src="https://s.fotorama.io/2.jpg"
+          alt=".."
+          data-caption="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus, quisquam!"
+        />
       </div>
     </div>
   </body>
